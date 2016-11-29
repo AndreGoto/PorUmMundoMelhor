@@ -1,0 +1,11 @@
+<%= simple_form_for(@job) do |f| %>
+  <%= f.input :title, placeholder: "Título" %>
+  <%= f.input :address, placeholder: "Endereço" %>
+  <%= f.input :short_description, placeholder: "Breve descrição" %>
+  <%= f.input :description, placeholder: "Descrição detalhada" %>
+  <%= f.input :date, placeholder: "Data de início" %>
+  <%= f.input :remote, as: :boolean, checked_value: true, unchecked_value: false %>
+  <%= f.input :finish, as: :boolean, checked_value: true, unchecked_value: false %>
+  <%#= f.input :picture, as: :attachinary %>
+  <%= f.button :submit, class: "btn btn-primary"  %>
+<% end %>
