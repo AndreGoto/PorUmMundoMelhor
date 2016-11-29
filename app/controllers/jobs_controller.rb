@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index ]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
   before_action :set_job, only: [:edit, :update, :show]
   def index
     @jobs = Job.all
@@ -13,7 +13,13 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.new
+    @job = Job.new(job_params)
+    @job.user_id = current_user.id
+    if @job.save
+      redirect_to job_path(@job)
+    else
+      render :new
+    end
   end
 
   def edit
