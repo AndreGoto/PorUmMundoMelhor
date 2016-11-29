@@ -1,1 +1,23 @@
-// Your footer style
+#footer {
+  background: #222222;
+  padding: 30px 0;
+  color: #CCCCCC; }
+
+/* line 6, /Users/boris/code/lewagon/middleman-airbnb/source/stylesheets/layout/_footer.scss */
+#footer p {
+  margin-top: 17px; }
+
+/* line 9, /Users/boris/code/lewagon/middleman-airbnb/source/stylesheets/layout/_footer.scss */
+#footer ul {
+  margin-top: 10px; }
+
+/* line 12, /Users/boris/code/lewagon/middleman-airbnb/source/stylesheets/layout/_footer.scss */
+#footer a {
+  color: #777777;
+  font-size: 30px;
+  letter-spacing: 20px;
+  transition: color 0.5s ease; }
+
+/* line 18, /Users/boris/code/lewagon/middleman-airbnb/source/stylesheets/layout/_footer.scss */
+#footer a:hover {
+  color: #FDB631; }
