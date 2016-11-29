@@ -1,17 +1,6 @@
 Rails.application.routes.draw do
+  resources :jobs, only: [:index, :show, :edit, :update, :new, :create]
   get 'dashboard/index'
-
-  get 'jobs/index'
-
-  get 'jobs/show'
-
-  get 'jobs/new'
-
-  get 'jobs/create'
-
-  get 'jobs/edit'
-
-  get 'jobs/update'
 
   devise_for :users
   root to: 'pages#home'
