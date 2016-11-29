@@ -1,8 +1,10 @@
-<h3><%= @job.title %></h3>
-
-<h3><%= @job.category %></h3>
-
-<h3><%= @job.description %></h3>
-<p>Find me in app/views/jobs/show.html.erb</p>
+<%= image_tag(@job.picture) %>
 
 
+<h3>Postado por: <%= @user.name %></h3>
+
+<h3>Título: <%= @job.title %></h3>
+
+<h3>Categoria: <%= @job.category %></h3>
+
+<h3>Descrição: <%= @job.description %></h3>
