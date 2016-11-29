@@ -6,8 +6,6 @@ class JobsController < ApplicationController
   end
 
   def show
-    user_id_job = @job.user_id
-    @user = User.find(user_id_job)
   end
 
   def new
