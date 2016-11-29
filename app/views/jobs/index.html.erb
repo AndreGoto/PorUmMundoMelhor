@@ -1,10 +1,22 @@
 
-<div class='banner' style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('banner_picture.jpg');">
-  <div class='banner-content'>
-    <h1>PorUmMundoMelhor</h1>
-    <p>Junte-se</p>
-    <%=link_to 'Poste um job', new_job_path, class: "btn btn-primary btn-lg" %>
-    <a class="btn btn-primary btn-lg">Aplique para um job</a>
+<div class='banner' style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%=image_path("banner_picture.jpg")%>);">
+  <div class='banner_content'>
+    <div>
+      <h1>PorUmMundoMelhor</h1>
+      <p>Junte-se</p>
+      <%=link_to 'Poste um job', new_job_path, class: "btn btn-primary btn-lg" %>
+      <a class="btn btn-primary btn-lg">Aplique para um job</a>
+    </div>
+  </div>
+  <div class='search_holder'>
+    <form action="/search" class='main_search'>
+      <div class='main_search_inputs'>
+        <input type="text" id='main_search_input' placeholder='Onde você quer trabalhar'>
+        <input type="text" id='second_search_input' placeholder='Qual a sua área'>
+        <input type="text" id='third_search_input' placeholder='outro tema de busca'>
+      </div>
+      <button type='submit' class='btn btn-success btn-lg'>Procurar</button>
+    </form>
   </div>
 
 </div>
