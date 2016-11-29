@@ -1,10 +1,22 @@
-<%= image_tag(@job.picture) %>
+<div class="container">
 
+  <div class="row">
+    <%= image_tag(@job.picture) %>
+  </div>
 
-<h3>Postado por: <%= @job.user.name %></h3>
+  <div class="row">
+    <h3>Postado por: <%= @job.user.name %></h3>
+  </div>
 
-<h3>Título: <%= @job.title %></h3>
+  <div class="row">
+    <h3>Título: <%= @job.title %></h3>
+  </div>
 
-<h3>Categoria: <%= @job.category %></h3>
+  <div class="row">
+    <h3>Categoria: <%= @job.category %></h3>
+  </div>
 
-<h3>Descrição: <%= @job.description %></h3>
+  <div class="row">
+    <h3>Descrição: <%= @job.description %></h3>
+  </div>
+</div>
