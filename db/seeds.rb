@@ -3,6 +3,7 @@ User.destroy_all
 
 category_list = ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"]
 
+
 users = []
 
 7.times do
@@ -21,6 +22,7 @@ users = []
 end
 
 20.times do
+
   jobs =Job.new(
     description: Faker::Lorem.paragraph,
     short_description: Faker::Lorem.sentence,
@@ -35,5 +37,4 @@ end
   )
   jobs.save!
 end
-
 
