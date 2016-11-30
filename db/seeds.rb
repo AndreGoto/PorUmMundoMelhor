@@ -1,6 +1,7 @@
-range = (1..5).to_a
 
-5.times do
+users = []
+
+7.times do
   user = User.new(
       email: Faker::Internet.email,
       password: "123456",
@@ -11,21 +12,24 @@ range = (1..5).to_a
       picture: Faker::Avatar.image,
       about: Faker::Lorem.sentence
   )
+  users << user
   user.save!
 end
 
-10.times do
+20.times do
+  category_list = ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"]
   jobs =Job.new(
     description: Faker::Lorem.paragraph,
     short_description: Faker::Lorem.sentence,
-    category: Faker::Lorem.words,
+    category: category_list.sample, #Faker::Lorem.words,
     title: Faker::Name.title,
     remote: Faker::Boolean.boolean,
     finish: Faker::Boolean.boolean,
     address: Faker::Address.street_address,
     date: Faker::Date.forward(30),
-    user_id: range.sample,
+    user: users.sample, #rails understand that this 'user' is 'user_id'
     picture: Faker::Avatar.image
   )
   jobs.save!
 end
+
