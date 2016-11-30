@@ -2,14 +2,12 @@ class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
   before_action :set_job, only: [:edit, :update, :show]
   def index
-    #@jobs = Job.all
+    @jobs = Job.all
     if params[:search]
       #we are going to search by job title
       search_title = params[:search][:title]
       search_category = params[:search][:category]
       @jobs = Job.search(search_title,search_category).order(created_at: :desc)
-    else
-      @jobs = Job.all.order(created_at: :desc)
     end
   end
 
