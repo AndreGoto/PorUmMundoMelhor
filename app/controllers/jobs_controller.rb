@@ -26,7 +26,11 @@ class JobsController < ApplicationController
   end
 
   def update
-    @job.update(job_params)
+    if @job.update(job_params)
+      redirect_to job_path(@job)
+    else
+      render :edit
+    end
   end
 
   private
