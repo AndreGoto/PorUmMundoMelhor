@@ -5,14 +5,15 @@ class Job < ApplicationRecord
   #this method can be tested on "rails console"
   def self.search(title,category)
     #returns an array from the results
-    cat = Job.where("category LIKE ?", "%#{category}%")
     tit = Job.where("title LIKE ?", "%#{title.capitalize}%")
-
+    cat = Job.where("category LIKE ?", "%#{category}%")
     result_1 = tit.where("category LIKE ?", "%#{category}%")
     if result_1
-      return result_1
+      result_1
+    elsif tit
+      tit
     else
-      return cat
+      cat
     end
   end
 end
