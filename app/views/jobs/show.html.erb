@@ -8,7 +8,7 @@
       <% else %>
         <div class="item">
       <% end %>
-          <%= cl_image_tag pic.path, width: 300, height: 200 %>
+          <%= cl_image_tag pic.path, width: 800, height: 200, crop: :fill %>
         </div>
       <% end %>
     </div>
