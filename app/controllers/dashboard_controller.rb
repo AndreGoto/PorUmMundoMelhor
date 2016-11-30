@@ -1,13 +1,16 @@
 class DashboardController < ApplicationController
   def index
     volunteer_jobs = Volunteer.where(user_id: current_user.id)
-    @dashboard = []
+    @jobs_progress = []
+    @jobs_ended = []
     volunteer_jobs.each do |volunteer|
       job = Job.find(volunteer.job_id)
-      qty = Volunteer.where(job_id: volunteer.job_id)
-      # job[:qty] = qty.count
-      @dashboard << job
+      if job.finish
+        @jobs_ended << job
+      else
+        @jobs_progress << job
+      end
     end
-    @dashboard
+    @jobs_created = Job.where(user_id: current_user.id)
   end
 end
