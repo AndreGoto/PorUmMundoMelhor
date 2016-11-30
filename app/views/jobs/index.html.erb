@@ -1,24 +1,36 @@
 
 <div class='banner' style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%=image_path("banner_picture.jpg")%>);">
+
   <div class='banner_content'>
     <div>
       <h1>PorUmMundoMelhor</h1>
       <p>Junte-se</p>
       <%=link_to 'Poste um job', new_job_path, class: "btn btn-primary btn-lg" %>
-      <a class="btn btn-primary btn-lg">Aplique para um job</a>
     </div>
   </div>
+
   <div class='search_holder'>
+    <!--
+    Form anterior:
+
     <form action="/search" class='main_search'>
       <div class='main_search_inputs'>
         <input type="text" id='main_search_input' placeholder='Onde você quer trabalhar'>
+        Job.where("title LIKE '%Regional%'")
         <input type="text" id='second_search_input' placeholder='Qual a sua área'>
         <input type="text" id='third_search_input' placeholder='outro tema de busca'>
       </div>
       <button type='submit' class='btn btn-success btn-lg'>Procurar</button>
-    </form>
+    </form>-->
+
+    <%= simple_form_for :search, url: jobs_path , :method => :get, html: {class: "main_search, form-inline"} do |f|%>
+      <%= f.input :category, collection: ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"], label: false %>
+      <%= f.input :title, placeholder: "Procure pelo job", label: false %>
+      <%= f.button :submit, 'Search', class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
+
 
 <div class="wrapper-cards">
   <div class="container">
@@ -27,10 +39,11 @@
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="card">
           <div class="card-picture">
-            <% if job.picture %>
-              <%=image_tag(job.picture) %>
+            <% if job.picture != [] %>
+              <% first_image = job.picture.sample %>
+              <%= cl_image_tag first_image.path, width: 345, height: 150 %>
             <% else %>
-              <%=image_tag("https://unsplash.it/400/300") %>
+              <div class="no-img"><i class="fa fa-image"></i></div>
             <% end %>
             <span class="gradient"> </span>
             <div class="card-category text-right">

@@ -3,6 +3,12 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:edit, :update, :show]
   def index
     @jobs = Job.all
+    if params[:search]
+      #we are going to search by job title
+      search_title = params[:search][:title]
+      search_category = params[:search][:category]
+      @jobs = Job.search(search_title,search_category).order(created_at: :desc)
+    end
   end
 
   def show
@@ -43,6 +49,6 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:title, :description, :short_description,
-                                :category, :title, :remote, :finish, :address, :date)
+                                :category, :title, :remote, :finish, :address, :date, picture: [])
   end
 end
