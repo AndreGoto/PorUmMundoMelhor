@@ -1,20 +1,21 @@
 <div class="container">
-  <table>
+  <h1 class="text-center">Dashboard</h1>
+  <table class="table table-hover">
     <thead>
       <th>Job</th>
-      <th>Titulo</th>
       <th>Categoria</th>
       <th>Participantes</th>
       <th>Finalizado</th>
     </thead>
-    <rbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </rbody>
+    <tbody>
+      <% @dashboard.each do |job| %>
+        <tr>
+          <td><%= link_to job.title, job_path(job)  %></td>
+          <td><%= job.category %></td>
+          <td><%#= job.qty %></td>
+          <td><%= job.finish ? "Em progresso" : "Finalizado" %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>
