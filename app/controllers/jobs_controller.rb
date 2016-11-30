@@ -12,6 +12,8 @@ class JobsController < ApplicationController
   end
 
   def show
+    @job = Job.find(params[:id])
+    @job_coordinates = { lat: @job.latitude, lng: @job.longitude }
   end
 
   def new
