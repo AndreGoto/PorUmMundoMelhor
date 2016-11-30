@@ -20,8 +20,8 @@
     </form>-->
 
     <%= form_tag(jobs_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :name, params[:name], placeholder: "Procure Jobs pelo nome"%>
-    <%= submit_tag "Buscar" %>
+    <%= text_field_tag :title, params[:title], placeholder: "Procure Jobs pelo nome", style:"color:black"%>
+    <%= submit_tag "Buscar", style:"color:black;" %>
     <% end %>
 
   </div>
