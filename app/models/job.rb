@@ -2,6 +2,8 @@ class Job < ApplicationRecord
   belongs_to :user
   has_many :volunteers
 
+  has_attachments :picture, maximum: 5
+
   #this method can be tested on "rails console"
   def self.search(title,category)
     #returns an array from the results

@@ -9,6 +9,6 @@
     <%= f.input :finish, as: :boolean, checked_value: true, unchecked_value: false %>
   <% end %>
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <%#= f.input :picture, as: :attachinary %>
+  <%= f.input :picture, as: :attachinary %>
   <%= f.button :submit, class: "btn btn-primary"  %>
 <% end %>
