@@ -1,11 +1,15 @@
 <div class="container">
 
   <div class="row">
-    <%= image_tag(@job.picture) %>
+    <% if @job.picture %>
+      <%= image_tag(@job.picture) %>
+    <% else %>
+      <%=image_tag("https://unsplash.it/400/300") %>
+    <% end %>
   </div>
 
   <div class="row">
-    <h3>Postado por: <%= @job.user.name %></h3>
+    <h3>Postado por: <%= @job.user.first_name %> <%= @job.user.last_name %></h3>
   </div>
 
   <div class="row">
