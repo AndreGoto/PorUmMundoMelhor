@@ -1,13 +1,28 @@
+<div class="image-wrapper">
+  <% if @job.picture != [] %>
+  <div class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <% @job.picture.each do |pic| %>
+      <% if pic.id == 1 %>
+        <div class="item active">
+      <% else %>
+        <div class="item">
+      <% end %>
+          <%= cl_image_tag pic.path, width: 300, height: 200 %>
+        </div>
+      <% end %>
+    </div>
+    <!-- carousel-inner -->
+  </div>
+  <% else %>
+    <%=image_tag("https://unsplash.it/400/300") %>
+  <% end %>
+</div>
+
 <div class="container">
 
   <div class="row">
-    <% if @job.picture != [] %>
-      <% @job.picture.each do |pic| %>
-        <%= cl_image_tag pic.path, width: 300, height: 200, crop: :fill %>
-      <% end %>
-    <% else %>
-      <%=image_tag("https://unsplash.it/400/300") %>
-    <% end %>
+
   </div>
 
   <div class="row">
