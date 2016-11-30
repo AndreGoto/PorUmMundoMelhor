@@ -1,5 +1,7 @@
-#Job.destroy_all
-#User.destroy_all
+Job.destroy_all
+User.destroy_all
+
+category_list = ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"]
 
 users = []
 
@@ -19,14 +21,13 @@ users = []
 end
 
 20.times do
-  category_list = ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"]
   jobs =Job.new(
     description: Faker::Lorem.paragraph,
     short_description: Faker::Lorem.sentence,
     category: category_list.sample, #Faker::Lorem.words,
     title: Faker::Name.title,
     remote: Faker::Boolean.boolean,
-    finish: Faker::Boolean.boolean,
+    finish: false,
     address: Faker::Address.street_address,
     date: Faker::Date.forward(30),
     user: users.sample, #rails understand that this 'user' is 'user_id'
