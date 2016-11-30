@@ -3,6 +3,11 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:edit, :update, :show]
   def index
     @jobs = Job.all
+    if params[:name]
+      @jobs = Job.search(params[:name]).order("created_at DESC")
+    else
+      @jobs = Job.all.order('created_at DESC')
+    end
   end
 
   def show
