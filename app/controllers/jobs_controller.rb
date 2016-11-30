@@ -4,6 +4,7 @@ class JobsController < ApplicationController
   def index
     #@jobs = Job.all
     if params[:title]
+      #we are going to search by job title
       search_query = params[:title]
       @jobs = Job.search(search_query).order(created_at: :desc)
     else
