@@ -1,4 +1,4 @@
-<div class="navbar-wagon">
+<div class="navbar-wagon navbar-fixed-top">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <h1 class="logo">
@@ -51,16 +51,14 @@
           </ul>
         </div>
       </div>
-
+      <!-- Button (call-to-action) -->
+      <%= link_to t(".top_call_to_action", default: "Dashboard"), dashboard_index_path, class: "navbar-wagon-item navbar-wagon-button btn btn-default" %>
     <% else %>
 
       <!-- Login text link -->
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% end %>
-
-    <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Dashboard"), dashboard_index_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
