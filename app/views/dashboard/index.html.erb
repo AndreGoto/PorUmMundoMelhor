@@ -1,21 +1,66 @@
 <div class="container">
   <h1 class="text-center">Dashboard</h1>
-  <table class="table table-hover">
-    <thead>
-      <th>Job</th>
-      <th>Categoria</th>
-      <th>Participantes</th>
-      <th>Finalizado</th>
-    </thead>
-    <tbody>
-      <% @dashboard.each do |job| %>
-        <tr>
-          <td><%= link_to job.title, job_path(job)  %></td>
-          <td><%= job.category %></td>
-          <td><%#= job.qty %></td>
-          <td><%= job.finish ? "Em progresso" : "Finalizado" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <% unless @jobs_progress.nil? %>
+    <table class="table table-hover">
+      <legend class="text-center">Causas em que participa</legend>
+      <thead>
+        <th>Job</th>
+        <th>Categoria</th>
+        <th>Participantes</th>
+        <th>Finalizado</th>
+      </thead>
+      <tbody>
+        <% @jobs_progress.each do |job| %>
+          <tr>
+            <td><%= link_to job.title, job_path(job)  %></td>
+            <td><%= job.category %></td>
+            <td><%#= job.qty %></td>
+            <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <% unless @djobs_created.nil? %>
+    <table class="table table-hover">
+      <legend class="text-center">Minhas causas em progresso</legend>
+      <thead>
+        <th>Job</th>
+        <th>Categoria</th>
+        <th>Participantes</th>
+        <th>Finalizado</th>
+      </thead>
+      <tbody>
+        <% @djobs_created.each do |job| %>
+          <tr>
+            <td><%= link_to job.title, job_path(job)  %></td>
+            <td><%= job.category %></td>
+            <td><%#= job.qty %></td>
+            <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <% unless @jobs_ended.nil? %>
+    <table class="table table-hover">
+      <legend class="text-center">Causas finalizadas</legend>
+      <thead>
+        <th>Job</th>
+        <th>Categoria</th>
+        <th>Participantes</th>
+        <th>Finalizado</th>
+      </thead>
+      <tbody>
+        <% @jobs_ended.each do |job| %>
+          <tr>
+            <td><%= link_to job.title, job_path(job)  %></td>
+            <td><%= job.category %></td>
+            <td><%#= job.qty %></td>
+            <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>
