@@ -1,8 +1,10 @@
 <div class="container">
 
   <div class="row">
-    <% if @job.picture %>
-      <%= image_tag(@job.picture) %>
+    <% if @job.picture != [] %>
+      <% @job.picture.each do |pic| %>
+        <%= cl_image_tag pic.path, width: 300, height: 200, crop: :fill %>
+      <% end %>
     <% else %>
       <%=image_tag("https://unsplash.it/400/300") %>
     <% end %>
