@@ -27,10 +27,11 @@
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="card">
           <div class="card-picture">
-            <% if job.picture %>
-              <%=image_tag(job.picture) %>
+            <% if job.picture != [] %>
+              <% first_image = job.picture.sample %>
+              <%= cl_image_tag first_image.path, width: 345, height: 150 %>
             <% else %>
-              <%=image_tag("https://unsplash.it/400/300") %>
+              <div class="no-img"><i class="fa fa-image"></i></div>
             <% end %>
             <span class="gradient"> </span>
             <div class="card-category text-right">
