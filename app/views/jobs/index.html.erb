@@ -9,7 +9,10 @@
     </div>
   </div>
   <div class='search_holder'>
-    <!--<form action="/search" class='main_search'>
+    <!--
+    Form anterior:
+
+    <form action="/search" class='main_search'>
       <div class='main_search_inputs'>
         <input type="text" id='main_search_input' placeholder='Onde você quer trabalhar'>
         Job.where("title LIKE '%Regional%'")
@@ -18,12 +21,17 @@
       </div>
       <button type='submit' class='btn btn-success btn-lg'>Procurar</button>
     </form>-->
+    <%#= f.input :categorory, collection: ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"] %>
 
-    <%= form_tag(jobs_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :title, params[:title], placeholder: "Procure Jobs pelo nome", style:"color:black"%>
-    <%= submit_tag "Buscar", style:"color:black;" %>
+    <%#= form_tag(jobs_path, :method => "get", id: "search-form") do %>
+    <%#= text_field_tag :title, params[:title], placeholder: "Procure Jobs pelo nome", style:"color:black"%>
+    <%#= submit_tag "Buscar", style:"color:black;" %>
+    <%# end %>
+    <%= simple_form_for :search, url: jobs_path , :method => :get do |f|%>
+      <%= f.input :category, collection: ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"] %>
+      <%= f.input :title, placeholder: "Procure pelo nome" %>
+      <%= f.button :submit, class: "btn btn-primary"  %>
     <% end %>
-
   </div>
 </div>
 
