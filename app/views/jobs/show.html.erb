@@ -2,14 +2,17 @@
   <% if @job.picture != [] %>
   <div id="carousel-show" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
+      <% first_item = true %>
       <% @job.picture.each do |pic| %>
-      <% if pic.id == 1 %>
+
+      <% if first_item %>
         <div class="item active">
+        <% first_item = false%>
       <% else %>
         <div class="item">
       <% end %>
-          <%= cl_image_tag pic.path, width: 800, height: 200, crop: :fill %>
-        </div>
+        <%= cl_image_tag pic.path, width: 800, height: 200, crop: :fill %>
+      </div>
       <% end %>
     </div>
      <!-- Controls -->
