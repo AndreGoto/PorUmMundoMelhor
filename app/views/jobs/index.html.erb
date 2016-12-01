@@ -5,7 +5,7 @@
     <div>
       <h1>PorUmMundoMelhor</h1>
       <p>Junte-se</p>
-      <%=link_to 'Poste um job', new_job_path, class: "btn btn-primary btn-lg" %>
+      <%=link_to 'Publique uma causa social', new_job_path, class: "btn btn-primary btn-lg" %>
     </div>
   </div>
 
@@ -68,7 +68,7 @@
               <%= job.short_description %>
             </p>
           </div>
-          <%=link_to "Link", job_path(job), class: "btn btn-default" %>
+          <%=link_to job.title, job_path(job), class: "card-link" %>
         </div>
       </div>
       <% end %>
