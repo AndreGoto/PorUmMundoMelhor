@@ -53,6 +53,7 @@
       <div class="action-group">
         <% @volunteers.each do |volunteer| %>
           <%= generate_profile_image(volunteer) %>
+          <%= volunteer.name %>
         <% end %>
       </div>
     </div>
