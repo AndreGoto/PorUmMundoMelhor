@@ -21,7 +21,7 @@
       </tbody>
     </table>
   <% end %>
-  <% unless @djobs_created.nil? %>
+  <% unless @jobs_created.nil? %>
     <table class="table table-hover">
       <legend class="text-center">Minhas causas em progresso</legend>
       <thead>
@@ -31,7 +31,7 @@
         <th>Finalizado</th>
       </thead>
       <tbody>
-        <% @djobs_created.each do |job| %>
+        <% @jobs_created.each do |job| %>
           <tr>
             <td><%= link_to job.title, job_path(job)  %></td>
             <td><%= job.category %></td>
