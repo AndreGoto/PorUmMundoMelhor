@@ -1,45 +1,73 @@
 <div class="container">
+  <h2>Resultado da busca:</h2>
   <div class="row">
     <div class="col-sm-12">
-      <p>Escolha uma das opções abaixo:</p>
+      <!-- <p>Escolha uma das opções abaixo:</p> -->
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <div id="smap"> </div>
+  <% if @jobs == [] %>
+    <div class="row">
+      <div class="col-sm-12">
+        <p>Nenhum resultado</p>
+      </div>
     </div>
-    <div class="col-sm-6">
-      <% unless @jobs.nil? %>
-        <% @jobs.each do |job| %>
-          <div class="card">
-            <div class="card-picture">
-              <% if job.picture != [] %>
-                <% first_image = job.picture.sample %>
-                <%= cl_image_tag first_image.path, width: 345, height: 150 %>
-              <% else %>
-                <div class="no-img"><i class="fa fa-image"></i></div>
-              <% end %>
-              <span class="gradient"> </span>
-              <div class="card-category text-right">
-                <%= job.category %>
+  <% else %>
+    <div class="row">
+      <div class="col-sm-6">
+        <div id="smap"> </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="row">
+            <% @jobs.each do |job| %>
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-picture">
+                    <% if job.picture != [] %>
+                      <% first_image = job.picture.sample %>
+                      <%= cl_image_tag first_image.path, width: 345, height: 150 %>
+                    <% else %>
+                      <div class="no-img"><i class="fa fa-image"></i></div>
+                    <% end %>
+                    <span class="gradient"> </span>
+                    <div class="card-category text-right">
+                      <%= job.category %>
+                    </div>
+                    <div class="card-title">
+                      <h2> <%= job.title %> </h2>
+                    </div>
+                  </div>
+                  <div class="card-desc text-center">
+                    <% if job.remote == true %>
+                      <p><i class="fa fa-wifi"></i> Remoto</p>
+                    <% end %>
+                    <p>
+                      <%= job.short_description %>
+                    </p>
+                  </div>
+                  <%=link_to "Link", job_path(job), class: "btn btn-default" %>
+                </div>
               </div>
-              <div class="card-title">
-                <h2> <%= job.title %> </h2>
-              </div>
-            </div>
-            <div class="card-desc text-center">
-              <% if job.remote == true %>
-                <p><i class="fa fa-wifi"></i> Remoto</p>
-              <% end %>
-              <p>
-                <%= job.short_description %>
-              </p>
-            </div>
-            <%=link_to "Link", job_path(job), class: "btn btn-default" %>
-          </div>
-        <% end %>
-        <%= @teste %>
-      <% end %>
+            <% end %>
+        </div>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'smap' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
+<% end %>
