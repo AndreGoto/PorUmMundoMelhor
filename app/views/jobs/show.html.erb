@@ -50,6 +50,11 @@
           <%= link_to "Aplicar", job_volunteers_path(@job), method: :post, class: 'btn btn-lg btn-success btn-block'%>
         <% end %>
       </div>
+      <div class="action-group">
+        <% @volunteers.each do |volunteer| %>
+          <%= generate_profile_image(volunteer) %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
