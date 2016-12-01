@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="text-center">Dashboard</h1>
-  <% unless @jobs_progress.nil? %>
+  <% unless @jobs_progress.empty? %>
     <table class="table table-hover">
       <legend class="text-center">Causas em que participa</legend>
       <thead>
@@ -21,7 +21,7 @@
       </tbody>
     </table>
   <% end %>
-  <% unless @jobs_created.nil? %>
+  <% unless @jobs_created.empty? %>
     <table class="table table-hover">
       <legend class="text-center">Minhas causas em progresso</legend>
       <thead>
@@ -42,7 +42,7 @@
       </tbody>
     </table>
   <% end %>
-  <% unless @jobs_ended.nil? %>
+  <% unless @jobs_ended.empty? %>
     <table class="table table-hover">
       <legend class="text-center">Causas finalizadas</legend>
       <thead>
@@ -62,5 +62,8 @@
         <% end %>
       </tbody>
     </table>
+  <% end %>
+  <% if @jobs_progress.empty? && @jobs_progress.empty? && @jobs_ended.empty? %>
+    <h3 class="text-center">Ajude o mundo a melhorar</h3>
   <% end %>
 </div>
