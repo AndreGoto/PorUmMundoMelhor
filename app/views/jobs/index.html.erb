@@ -68,7 +68,7 @@
               <%= job.short_description %>
             </p>
           </div>
-          <%=link_to "Link", job_path(job), class: "btn btn-default" %>
+          <%=link_to job.title, job_path(job), class: "card-link" %>
         </div>
       </div>
       <% end %>

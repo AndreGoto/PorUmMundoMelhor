@@ -29,36 +29,24 @@
 </div>
 
 <div class="container">
-
   <div class="row">
-
-  </div>
-
-  <div class="row">
-    <h3>Postado por: <%= @job.user.first_name %> <%= @job.user.last_name %></h3>
-  </div>
-
-  <div class="row">
-    <h3>Título: <%= @job.title %></h3>
-  </div>
-
-  <div class="row">
-    <h3>Categoria: <%= @job.category %></h3>
-  </div>
-
-  <div class="row">
-    <h3>Descrição: <%= @job.description %></h3>
-  </div>
-
-  <div class="row">
-  <% if @job_applied.empty? %>
-    <%= link_to "Aplicar", job_volunteers_path(@job), method: :post, class: 'btn btn-success'%>
-  <% else %>
-    <%= link_to "Sair", job_volunteer_path(@job), method: :delete, data: { confirm: 'Deseja realmente sair =(?' }, class: 'btn btn-danger'%>
-  <% end %>
-    <% if user_signed_in? && @job.user_id == current_user.id %>
-      <%= link_to "Editar", edit_job_path, class: 'btn btn-primary'%>
-    <% end %>
-    <%= link_to "Dashboard", dashboard_index_path, class: 'btn btn-primary'%>
+    <div class="col-sm-9">
+      <h2> <%= @job.title %> </h2>
+      <p><small>Postado por: <%= @job.user.first_name %> <%= @job.user.last_name %></small></p>
+      <p><small>Categoria: <%= @job.category %></small></p>
+      <p><%= @job.description %></p>
+    </div>
+    <div class="col-sm-3">
+      <div class="action-group">
+        <% if @job_applied.empty? %>
+          <%= link_to "Aplicar", job_volunteers_path(@job), method: :post, class: 'btn btn-lg btn-success btn-block'%>
+        <% else %>
+        <%= link_to "Sair", job_volunteer_path(@job), method: :delete, data: { confirm: 'Deseja realmente sair =(?' }, class: 'btn btn-danger btn-block'%>
+        <% end %>
+        <% if user_signed_in? && @job.user_id == current_user.id %>
+          <%= link_to "Editar", edit_job_path, class: 'btn btn-primary btn-block'%>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
