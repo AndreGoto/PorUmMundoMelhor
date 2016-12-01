@@ -10,7 +10,7 @@ class Job < ApplicationRecord
   # scope :address, -> (address) { where address: address }
   # scope :title, -> (title) { where("name like ?", "#{title}%")}
 
-  #this method can be tested on "rails console"
+  # this method can be tested on "rails console"
   # def self.search(title,category)
   #   #returns an array from the results
   #   tit = Job.where("title LIKE ?", "%#{title.capitalize}%")
