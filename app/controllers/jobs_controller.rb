@@ -3,11 +3,28 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:edit, :update, :show]
   def index
     @jobs = Job.all
-    if params[:search]
-      #we are going to search by job title
-      search_title = params[:search][:title]
-      search_category = params[:search][:category]
-      @jobs = Job.search(search_title,search_category).order(created_at: :desc)
+    # if params[:search]
+    #   #we are going to search by job title
+    #   search_title = params[:search][:title]
+    #   search_category = params[:search][:category]
+    #   @jobs = Job.search(search_title,search_category).order(created_at: :desc)
+    # end
+  end
+
+  def search
+    if params[:title].empty? && params[:category].empty?
+      @jobs = Job.all
+    else
+      if params[:title].empty?
+        @jobs = Job.where(category: params[:category])
+      else
+        @jobs = Job.where('lower(title) LIKE ?', "%#{params[:title].downcase}%")
+        if @jobs
+          @jobs.select do |job|
+             job[:category] == params[:category]
+          end
+        end
+      end
     end
   end
 
