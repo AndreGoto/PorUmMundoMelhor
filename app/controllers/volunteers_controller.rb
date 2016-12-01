@@ -14,6 +14,7 @@ class VolunteersController < ApplicationController
     end
 
     if @volunteer.save
+      flash[:notice] = "Aeee! Já estamos sentindo a melhora no mundo! Boa sorte nesse projeto!"
       redirect_to dashboard_index_path
     else
       redirect_to jobs_path

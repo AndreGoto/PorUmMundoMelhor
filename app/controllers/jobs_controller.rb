@@ -24,6 +24,7 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.user_id = current_user.id
     if @job.save
+      flash[:notice] = "Mandou bem, sua nova causa social foi criada!"
       redirect_to job_path(@job)
     else
       render :new
@@ -35,6 +36,7 @@ class JobsController < ApplicationController
 
   def update
     if @job.update(job_params)
+      flash[:notice] = "Pronto! Sua causa já está atualizada."
       redirect_to job_path(@job)
     else
       render :edit
