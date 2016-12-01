@@ -10,24 +10,31 @@
   </div>
 
   <div class='search_holder'>
-    <!--
-    Form anterior:
 
     <form action="/search" class='main_search'>
       <div class='main_search_inputs'>
-        <input type="text" id='main_search_input' placeholder='Onde você quer trabalhar'>
-        Job.where("title LIKE '%Regional%'")
-        <input type="text" id='second_search_input' placeholder='Qual a sua área'>
-        <input type="text" id='third_search_input' placeholder='outro tema de busca'>
+        <input type="text" id='main_search_input' name='address' placeholder='Localização'>
+        <input type="text" id='second_search_input' name='title' placeholder='Assunto'>
+        <select name='category' id='third_search_input'>
+          <option value="" selected>Categoria</option>
+          <option value="Educação">Educação</option>
+          <option value="Crianças e jovens">Crianças e jovens</option>
+          <option value="Defesa de direitos">Defesa de direitos</option>
+          <option value="Meio Ambiente">Meio Ambiente</option>
+          <option value="Pessoas com Deficiência">Pessoas com Deficiência</option>
+          <option value="Proteção Animal">Proteção Animal</option>
+          <option value="Saúde">Saúde</option>
+          <option value="Combate à Pobreza">Combate à Pobreza</option>
+        </select>
       </div>
       <button type='submit' class='btn btn-success btn-lg'>Procurar</button>
-    </form>-->
+    </form>
 
-    <%= simple_form_for :search, url: jobs_path , :method => :get, html: {class: "main_search, form-inline"} do |f|%>
-      <%= f.input :category, collection: ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"], label: false %>
-      <%= f.input :title, placeholder: "Procure pelo job", label: false %>
-      <%= f.button :submit, 'Search', class: "btn btn-primary" %>
-    <% end %>
+    <%#= simple_form_for :search, url: jobs_path , :method => :get, html: {class: "main_search, form-inline"} do |f|%>
+      <%#= f.input :category, collection: ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"], label: false %>
+      <%#= f.input :title, placeholder: "Procure pelo job", label: false %>
+      <%#= f.button :submit, 'Search', class: "btn btn-primary" %>
+    <%# end %>
   </div>
 </div>
 

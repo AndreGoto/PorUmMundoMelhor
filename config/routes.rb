@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :jobs, only: [:index, :show, :edit, :update, :new, :create] do
     resources :volunteers, only: [:new, :create]
   end
+  get '/search', to: 'jobs#search'
   get 'dashboard/index'
 
   devise_for :users,

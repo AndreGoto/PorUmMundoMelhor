@@ -3,11 +3,15 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:edit, :update, :show]
   def index
     @jobs = Job.all
-    if params[:search]
-      #we are going to search by job title
-      search_title = params[:search][:title]
-      search_category = params[:search][:category]
-      @jobs = Job.search(search_title,search_category).order(created_at: :desc)
+  end
+
+  def search
+    @jobs = Job.all
+    if params[:title].present?
+      @jobs = @jobs.where('lower(title) LIKE ?', "%#{params[:title].downcase}%")
+    end
+    if params[:category].present?
+      @jobs = @jobs.where(category: params[:category])
     end
   end
 
@@ -24,6 +28,7 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.user_id = current_user.id
     if @job.save
+      flash[:notice] = "Mandou bem, sua nova causa social foi criada!"
       redirect_to job_path(@job)
     else
       render :new
@@ -35,6 +40,7 @@ class JobsController < ApplicationController
 
   def update
     if @job.update(job_params)
+      flash[:notice] = "Pronto! Sua causa já está atualizada."
       redirect_to job_path(@job)
     else
       render :edit
