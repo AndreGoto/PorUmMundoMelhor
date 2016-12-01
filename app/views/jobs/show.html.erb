@@ -51,7 +51,11 @@
   </div>
 
   <div class="row">
-  <%= link_to "Aplicar", job_volunteers_path(@job), method: :post, class: 'btn btn-success'%>
+  <% if @job_applied.empty? %>
+    <%= link_to "Aplicar", job_volunteers_path(@job), method: :post, class: 'btn btn-success'%>
+  <% else %>
+    <%= link_to "Sair", job_volunteer_path(@job), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%>
+  <% end %>
     <% if user_signed_in? && @job.user_id == current_user.id %>
       <%= link_to "Editar", edit_job_path, class: 'btn btn-primary'%>
     <% end %>

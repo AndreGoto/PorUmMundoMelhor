@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
   resources :jobs, only: [:index, :show, :edit, :update, :new, :create] do
-    resources :volunteers, only: [:new, :create]
+    resources :volunteers, only: [:new, :create, :destroy]
   end
   get '/search', to: 'jobs#search'
   get 'dashboard/index'
