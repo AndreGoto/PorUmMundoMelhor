@@ -4,7 +4,7 @@
   <%= f.input :short_description, label: "Breve descrição", placeholder: "Descreva em poucas palavras ao leitor." %>
   <%= f.input :description, label: "Descrição detalhada", placeholder: "Fale mais detalhadamente sobre sua ideia de ajuda." %>
   <%= f.input :category, label: "Categoria", selected: "Educação", collection: ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"] %>
-  <%= f.input :date, placeholder: "Data de início" %>
+  <%= f.input :date, label: "Data de início" %>
   <%= f.input :remote, label:"Podem cotribuir à distância?", as: :boolean, checked_value: true, unchecked_value: false %>
   <% unless current_page?(new_job_path) %>
     <%= f.input :finish, as: :boolean, checked_value: true, unchecked_value: false %>
