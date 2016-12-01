@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :jobs
   has_many :volunteers
 
+  has_attachment :picture
+
   devise :omniauthable, omniauth_providers: [:facebook]
 
   def self.find_for_facebook_oauth(auth)
