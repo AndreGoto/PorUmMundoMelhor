@@ -29,7 +29,10 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
-    @job_applied = Volunteer.where(user_id: current_user.id, job_id: params[:id]) if user_signed_in?
+    if user_signed_in?
+      @job_applied = Volunteer.where(user_id: current_user.id, job_id: params[:id])
+      @job_applied = Job.where(id: params[:id], user_id: current_user.id) if @job_applied.empty?
+    end
     @job_coordinates = { lat: @job.latitude, lng: @job.longitude }
   end
 
