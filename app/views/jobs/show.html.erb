@@ -57,13 +57,4 @@
     <% end %>
     <%= link_to "Dashboard", dashboard_index_path, class: 'btn btn-primary'%>
   </div>
-
-  <% content_for(:after_js) do %>
-    <%= javascript_tag do %>
-      $(document).ready(function() {
-        var coord = <%= raw @job_coordinates.to_json %>;
-        alert('Job coordinates are ' + coord.lat + ', ' + coord.lng);
-      });
-    <% end %>
-  <% end %>
 </div>
