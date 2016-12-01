@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :show ]
+  skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :set_job, only: [:edit, :update, :show]
   def index
     @jobs = Job.all
@@ -7,6 +7,17 @@ class JobsController < ApplicationController
 
   def search
     @jobs = Job.all
+    if params[:address].present?
+      @jobs = @jobs.where.not(latitude: nil, longitude: nil)
+      @hash = Gmaps4rails.build_markers(@jobs) do |job, marker|
+        marker.lat job.latitude
+        marker.lng job.longitude
+      end
+      @job_coordinates = ""
+      @jobs.each do |job|
+        @job_coordinates = { lat: job.latitude, lng: job.longitude }
+      end
+    end
     if params[:title].present?
       @jobs = @jobs.where('lower(title) LIKE ?', "%#{params[:title].downcase}%")
     end
