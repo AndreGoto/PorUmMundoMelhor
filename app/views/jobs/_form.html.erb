@@ -1,9 +1,11 @@
+<h3 style="font-size:16px">Obs.: Campos obrigatórios em asterisco(*).</h3>
+
 <%= simple_form_for(@job) do |f| %>
   <%= f.input :title, label: "Título", placeholder: "Defina um título para a sua causa." %>
   <%= f.input :address, label: "Endereço", placeholder: "Endereço do local de execução desta causa (Cidade, Rua, Praça, etc.)." %>
   <%= f.input :short_description, label: "Breve descrição", placeholder: "Descreva em poucas palavras ao leitor." %>
   <%= f.input :description, label: "Descrição detalhada", placeholder: "Fale mais detalhadamente sobre sua ideia de ajuda." %>
-  <%= f.input :category, label: "Categoria", selected: "Educação", collection: ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"] %>
+  <%= f.input :category, label: "Categoria (clique para acessar a lista)", collection: ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"] %>
   <%= f.input :date, label: "Data de início" %>
   <%= f.input :remote, label:"Podem contribuir à distância?", as: :boolean, checked_value: true, unchecked_value: false %>
   <% unless current_page?(new_job_path) %>
