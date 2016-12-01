@@ -23,7 +23,7 @@ class VolunteersController < ApplicationController
 
   def destroy
     volunteer = Volunteer.where(user_id: current_user.id, job_id: params[:id]).first
-    volunteer.destroy
-    redirect_to job_path(params[:id])
+    p volunteer
+    redirect_to job_path(params[:id]) if volunteer.destroy
   end
 end
