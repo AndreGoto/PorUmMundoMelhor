@@ -1,14 +1,17 @@
 <%= simple_form_for(@job) do |f| %>
-  <%= f.input :title, placeholder: "Título" %>
-  <%= f.input :address, placeholder: "Endereço" %>
-  <%= f.input :short_description, placeholder: "Breve descrição" %>
-  <%= f.input :description, placeholder: "Descrição detalhada" %>
+  <%= f.input :title, label: "Título", placeholder: "Defina um título para a sua causa." %>
+  <%= f.input :address, label: "Endereço", placeholder: "Endereço do local de execução desta causa (Cidade, Rua, Praça, etc.)." %>
+  <%= f.input :short_description, label: "Breve descrição", placeholder: "Descreva em poucas palavras ao leitor." %>
+  <%= f.input :description, label: "Descrição detalhada", placeholder: "Fale mais detalhadamente sobre sua ideia de ajuda." %>
+  <%= f.input :category, label: "Categoria", selected: "Educação", collection: ["Educação","Crianças e jovens", "Defesa de direitos", "Meio Ambiente", "Pessoas com Deficiência", "Proteção Animal", "Saúde", "Combate à Pobreza"] %>
   <%= f.input :date, placeholder: "Data de início" %>
-  <%= f.input :remote, as: :boolean, checked_value: true, unchecked_value: false %>
+  <%= f.input :remote, label:"Podem cotribuir à distância?", as: :boolean, checked_value: true, unchecked_value: false %>
   <% unless current_page?(new_job_path) %>
     <%= f.input :finish, as: :boolean, checked_value: true, unchecked_value: false %>
   <% end %>
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.input :picture, as: :attachinary %>
+  <%= f.input :picture, label:"Poste uma foto", as: :attachinary %>
   <%= f.button :submit, class: "btn btn-primary"  %>
 <% end %>
+
+
