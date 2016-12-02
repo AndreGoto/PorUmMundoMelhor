@@ -62,7 +62,11 @@
               <% end %>
             </td>
             <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
-            <td><%= link_to "Editar", edit_job_path(job), class: 'btn btn-success'%></td>
+            <td>
+              <% if !job.finish %>
+                <%= link_to "Editar", edit_job_path(job), class: 'btn btn-success'%>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

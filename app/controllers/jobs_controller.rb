@@ -2,11 +2,11 @@ class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :set_job, only: [:edit, :update, :show]
   def index
-    @jobs = Job.all
+    @jobs = Job.where(finish: false)
   end
 
   def search
-    @jobs = Job.all
+    @jobs = Job.where(finish: false)
     if params[:address].present?
       @jobs = @jobs.near(params[:address], 20)
     end
