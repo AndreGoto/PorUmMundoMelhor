@@ -1,7 +1,7 @@
 <p><%= review.content %></p>
 
-  <p style="font-size: 14px;"><strong>Escrito por:</strong>
-  <%= review.user.name %>
+  <p style="font-size: 14px;">Escrito por:
+  <strong><%= review.user.name %></strong>
   (<%= time_ago_in_words(review.created_at) %>)</p>
 
 
