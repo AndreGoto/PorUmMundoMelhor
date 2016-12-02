@@ -1,4 +1,4 @@
 <%= simple_form_for([ job, review ], remote: true) do |form| %>
-  <%= form.input :content, as: :text %>
+  <%= form.input :content, as: :text, label: "Deixe um comentário" %>
   <%= form.button :submit %>
 <% end %>
