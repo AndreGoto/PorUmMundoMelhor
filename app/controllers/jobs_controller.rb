@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :set_job, only: [:edit, :update, :show]
+  before_action :map, only: [:search]
   def index
     @jobs = Job.all
   end
@@ -73,6 +74,15 @@ class JobsController < ApplicationController
 
   def set_job
     @job = Job.find(params[:id])
+  end
+
+  def map
+    @flats = Flat.where.not(latitude: nil, longitude: nil)
+
+    @hash = Gmaps4rails.build_markers(@flats) do |flat, marker|
+      marker.lat flat.latitude
+      marker.lng flat.longitude
+    end
   end
 
   def job_params

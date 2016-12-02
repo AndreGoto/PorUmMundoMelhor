@@ -38,6 +38,9 @@
     </div>
     <div class="col-sm-3">
       <div class="action-group">
+      <% if @job.address =! nil %>
+          <div id="smap" style="width: 250px; height: 250px;"></div>
+      <% end %>
         <% if user_signed_in? %>
           <% if @job.user_id == current_user.id %>
             <%= link_to "Editar", edit_job_path, class: 'btn btn-primary btn-block'%>
@@ -59,3 +62,22 @@
     </div>
   </div>
 </div>
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'smap' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
+<% end %>
