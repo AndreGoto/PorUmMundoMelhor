@@ -30,7 +30,6 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
-
     @user = User.find(params[:id])
     @review = Review.new
 
