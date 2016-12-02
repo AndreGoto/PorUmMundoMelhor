@@ -2,14 +2,14 @@
   <h2 class="title-header">Dashboard</h2>
   <% unless @jobs_progress.empty? %>
     <table class="table table-hover">
-      <thead class="bg-dark-blue">
+      <thead>
         <tr class="bg-dark-blue">
           <th colspan="6">Causas em que participa</th>
         </tr>
-        <tr>
+        <tr class="bg-medium-blue">
           <th>Job</th>
           <th>Categoria</th>
-          <th>Número de participantes</th>
+          <th class="text-center">Número de participantes</th>
           <th>Postado por</th>
           <th>Finalizado</th>
         </tr>
@@ -19,8 +19,14 @@
           <tr>
             <td><%= link_to job.title, job_path(job)  %></td>
             <td><%= job.category %></td>
-            <td><%= Volunteer.where(job_id: job.id).count %></td>
-            <td><%= job.user.first_name %> <%= job.user.last_name %></td>
+            <td class="text-center"><%= Volunteer.where(job_id: job.id).count %></td>
+            <td>
+              <% if job.user.name %>
+                <%= job.user.name %>
+              <% else %>
+                <%= job.user.first_name %> <%= job.user.last_name %>
+              <% end %>
+            </td>
             <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
           </tr>
         <% end %>
@@ -36,7 +42,7 @@
         <tr class="bg-medium-blue">
           <th>Job</th>
           <th>Categoria</th>
-          <th>Número de Participantes</th>
+          <th class="text-center">Número de Participantes</th>
           <th>Postado por</th>
           <th>Finalizado</th>
           <th>Editar</th>
@@ -47,8 +53,14 @@
           <tr>
             <td><%= link_to job.title, job_path(job)  %></td>
             <td><%= job.category %></td>
-            <td><%= Volunteer.where(job_id: job.id).count %></td>
-            <td><%= job.user.first_name %> <%= job.user.last_name %></td>
+            <td class="text-center"><%= Volunteer.where(job_id: job.id).count %></td>
+            <td>
+              <% if job.user.name %>
+                <%= job.user.name %>
+              <% else %>
+                <%= job.user.first_name %> <%= job.user.last_name %>
+              <% end %>
+            </td>
             <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
             <td><%= link_to "Editar", edit_job_path(job), class: 'btn btn-success'%></td>
           </tr>
@@ -65,7 +77,7 @@
       <tr class="bg-medium-blue">
         <th>Job</th>
         <th>Categoria</th>
-        <th>Participantes</th>
+        <th class="text-center">Participantes</th>
         <th>Finalizado</th>
       </tr>
       </thead>
@@ -74,7 +86,7 @@
           <tr>
             <td><%= link_to job.title, job_path(job)  %></td>
             <td><%= job.category %></td>
-            <td><%#= job.qty %></td>
+            <td class="text-center"><%= Volunteer.where(job_id: job.id).count %></td>
             <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
           </tr>
         <% end %>
