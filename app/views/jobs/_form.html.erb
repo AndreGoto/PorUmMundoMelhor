@@ -9,7 +9,7 @@
   <%= f.input :date, label: "Data de início" %>
   <%= f.input :remote, label:"Podem contribuir à distância?", as: :boolean, checked_value: true, unchecked_value: false %>
   <% unless current_page?(new_job_path) %>
-    <%= f.input :finish, as: :boolean, checked_value: true, unchecked_value: false %>
+    <%= f.input :finish, label: "Finalizado", as: :boolean, checked_value: true, unchecked_value: false %>
   <% end %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.input :picture, label:"Poste uma foto", as: :attachinary %>
