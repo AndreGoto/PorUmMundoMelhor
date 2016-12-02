@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :set_job, only: [:edit, :update, :show]
+
   def index
     @jobs = Job.where(finish: false)
   end
@@ -29,6 +30,9 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
+    @user = User.find(params[:id])
+    @review = Review.new
+
     if user_signed_in?
       @job_applied = Volunteer.where(user_id: current_user.id, job_id: params[:id])
       @job_applied = Job.where(id: params[:id], user_id: current_user.id) if @job_applied.empty?
@@ -73,6 +77,15 @@ class JobsController < ApplicationController
 
   def set_job
     @job = Job.find(params[:id])
+  end
+
+  def map
+    @flats = Flat.where.not(latitude: nil, longitude: nil)
+
+    @hash = Gmaps4rails.build_markers(@flats) do |flat, marker|
+      marker.lat flat.latitude
+      marker.lng flat.longitude
+    end
   end
 
   def job_params

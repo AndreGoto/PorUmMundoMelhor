@@ -65,4 +65,23 @@
       </div>
     </div>
   </div>
+
+  <p><strong>Poste um comentário:</strong></p>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <div id="reviews">
+        <% if @job.reviews.blank? %>
+          <!--Seja o primeiro a postar um comentário a <%= @job.title %>-->
+        <% else %>
+          <% @job.reviews.each do |review| %>
+            <%= render 'reviews/show', review: review %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+ <%= render 'reviews/form', job: @job, review: @review %>
+
 </div>
