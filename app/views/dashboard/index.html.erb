@@ -6,7 +6,8 @@
       <thead>
         <th>Job</th>
         <th>Categoria</th>
-        <th>Participantes</th>
+        <th>Número de participantes</th>
+        <th>Postado por</th>
         <th>Finalizado</th>
       </thead>
       <tbody>
@@ -14,7 +15,8 @@
           <tr>
             <td><%= link_to job.title, job_path(job)  %></td>
             <td><%= job.category %></td>
-            <td><%#= job.qty %></td>
+            <td><td><%= Volunteer.where(job_id: job.id).count %></td></td>
+            <td><%= job.user.first_name %> <%= job.user.last_name %></td>
             <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
           </tr>
         <% end %>
@@ -27,16 +29,20 @@
       <thead>
         <th>Job</th>
         <th>Categoria</th>
-        <th>Participantes</th>
+        <th>Número de Participantes</th>
+        <th>Postado por</th>
         <th>Finalizado</th>
+        <th>Editar</th>
       </thead>
       <tbody>
         <% @jobs_created.each do |job| %>
           <tr>
             <td><%= link_to job.title, job_path(job)  %></td>
             <td><%= job.category %></td>
-            <td><%#= job.qty %></td>
+            <td><%= Volunteer.where(job_id: job.id).count %></td>
+            <td><%= job.user.first_name %> <%= job.user.last_name %></td>
             <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
+            <td><%= link_to "Editar", edit_job_path(job), class: 'btn btn-primary'%></td>
           </tr>
         <% end %>
       </tbody>
@@ -64,6 +70,6 @@
     </table>
   <% end %>
   <% if @jobs_progress.empty? && @jobs_progress.empty? && @jobs_ended.empty? %>
-    <h3 class="text-center">Ajude o mundo a melhorar</h3>
+    <h3 class="text-center">Ajude a melhorar o mundo</h3>
   <% end %>
 </div>
