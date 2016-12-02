@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :set_job, only: [:edit, :update, :show]
-  before_action :map, only: [:search]
+
   def index
     @jobs = Job.all
   end
