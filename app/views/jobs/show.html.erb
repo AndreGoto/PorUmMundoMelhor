@@ -60,7 +60,7 @@
       </div>
       <div class='map-static'>
         <p><strong>Localização</strong></p>
-        <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=270x250&sensor=false&maptype=roadmap&markers=color:red|#{@job.address}" %>
+        <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=270x250&sensor=false&maptype=roadmap&markers=color:red|#{@job.address}" + "&key=#{ENV['GOOGLE_API_STATIC_MAPS_KEY']}"%>
       </div>
     </div>
   </div>
