@@ -3,6 +3,19 @@
  * These are examples of utilities classes
  * Feel free to change them and create your own
  * ------------------------------------- */
+html, body {
+  height: 100%;
+}
+
+.page-wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 160px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
 
 // Paddings
 .padded {

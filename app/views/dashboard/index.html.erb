@@ -1,20 +1,32 @@
 <div class="container">
-  <h1 class="text-center">Dashboard</h1>
+  <h2 class="title-header">Dashboard</h2>
   <% unless @jobs_progress.empty? %>
     <table class="table table-hover">
-      <legend class="text-center">Causas em que participa</legend>
       <thead>
-        <th>Job</th>
-        <th>Categoria</th>
-        <th>Participantes</th>
-        <th>Finalizado</th>
+        <tr class="bg-dark-blue">
+          <th colspan="6">Causas em que participa</th>
+        </tr>
+        <tr class="bg-medium-blue">
+          <th>Job</th>
+          <th>Categoria</th>
+          <th class="text-center">Número de participantes</th>
+          <th>Postado por</th>
+          <th>Status</th>
+        </tr>
       </thead>
       <tbody>
         <% @jobs_progress.each do |job| %>
           <tr>
             <td><%= link_to job.title, job_path(job)  %></td>
             <td><%= job.category %></td>
-            <td><%#= job.qty %></td>
+            <td class="text-center"><%= Volunteer.where(job_id: job.id).count %></td>
+            <td>
+              <% if job.user.name %>
+                <%= job.user.name %>
+              <% else %>
+                <%= job.user.first_name %> <%= job.user.last_name %>
+              <% end %>
+            </td>
             <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
           </tr>
         <% end %>
@@ -23,20 +35,38 @@
   <% end %>
   <% unless @jobs_created.empty? %>
     <table class="table table-hover">
-      <legend class="text-center">Minhas causas em progresso</legend>
       <thead>
-        <th>Job</th>
-        <th>Categoria</th>
-        <th>Participantes</th>
-        <th>Finalizado</th>
+        <tr class="bg-dark-blue">
+          <th colspan="6">Minhas causas em progresso</th>
+        </tr>
+        <tr class="bg-medium-blue">
+          <th>Job</th>
+          <th>Categoria</th>
+          <th class="text-center">Número de Participantes</th>
+          <th>Postado por</th>
+          <th>Status</th>
+          <th>Editar</th>
+        </tr>
       </thead>
       <tbody>
         <% @jobs_created.each do |job| %>
           <tr>
             <td><%= link_to job.title, job_path(job)  %></td>
             <td><%= job.category %></td>
-            <td><%#= job.qty %></td>
+            <td class="text-center"><%= Volunteer.where(job_id: job.id).count %></td>
+            <td>
+              <% if job.user.name %>
+                <%= job.user.name %>
+              <% else %>
+                <%= job.user.first_name %> <%= job.user.last_name %>
+              <% end %>
+            </td>
             <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
+            <td>
+              <% if !job.finish %>
+                <%= link_to "Editar", edit_job_path(job), class: 'btn btn-success'%>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
@@ -44,19 +74,23 @@
   <% end %>
   <% unless @jobs_ended.empty? %>
     <table class="table table-hover">
-      <legend class="text-center">Causas finalizadas</legend>
-      <thead>
+      <thead class="bg-dark-blue">
+      <tr class="bg-dark-blue">
+        <th colspan="6">Causas finalizadas</th>
+      </tr>
+      <tr class="bg-medium-blue">
         <th>Job</th>
         <th>Categoria</th>
-        <th>Participantes</th>
-        <th>Finalizado</th>
+        <th class="text-center">Participantes</th>
+        <th>Status</th>
+      </tr>
       </thead>
       <tbody>
         <% @jobs_ended.each do |job| %>
           <tr>
             <td><%= link_to job.title, job_path(job)  %></td>
             <td><%= job.category %></td>
-            <td><%#= job.qty %></td>
+            <td class="text-center"><%= Volunteer.where(job_id: job.id).count %></td>
             <td><%= job.finish ? "Finalizado" : "Em progresso" %></td>
           </tr>
         <% end %>
@@ -64,6 +98,6 @@
     </table>
   <% end %>
   <% if @jobs_progress.empty? && @jobs_progress.empty? && @jobs_ended.empty? %>
-    <h3 class="text-center">Ajude o mundo a melhorar</h3>
+    <h3 class="text-center">Ajude a melhorar o mundo</h3>
   <% end %>
 </div>
