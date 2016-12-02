@@ -1,0 +1,23 @@
+.title-header {
+  font-family: $header-font;
+  color: #3b5998;
+  text-transform: uppercase;
+}
+
+tr.bg-dark-blue{
+  color: #ffffff;
+}
+tr.bg-medium-blue{
+  background-color: #547fd8;
+  color: #ffffff;
+}
+
+.table > thead > tr.bg-dark-blue > th,
+.table > thead > tr.bg-medium-blue > th, {
+  border-bottom: 0;
+  border-top: 0;
+}
+
+.table > thead > tr.bg-medium-blue > th {
+  font-weight: normal;
+}
