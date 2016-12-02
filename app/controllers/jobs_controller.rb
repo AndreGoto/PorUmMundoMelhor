@@ -30,6 +30,7 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
+    @review = Review.new
     if user_signed_in?
       @job_applied = Volunteer.where(user_id: current_user.id, job_id: params[:id])
       @job_applied = Job.where(id: params[:id], user_id: current_user.id) if @job_applied.empty?
