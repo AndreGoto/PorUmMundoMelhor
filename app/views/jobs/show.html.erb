@@ -36,6 +36,16 @@
       <p><%= @job.description %></p>
       <p><small>Postado por: <%= @job.user.first_name %> <%= @job.user.last_name %></small></p>
       <p><small>Categoria: <%= @job.category %></small></p>
+      <br>
+      <div id="reviews">
+        <strong>Comentários</strong><br>
+        <% unless @job.reviews.blank? %>
+          <% @job.reviews.each do |review| %>
+            <%= render 'reviews/show', review: review %>
+          <% end %>
+        <% end %>
+      </div>
+     <%= render 'reviews/form', job: @job, review: @review %>
     </div>
     <div class="col-sm-3 col-sm-offset-2">
       <div class="action-group">
@@ -65,23 +75,4 @@
       </div>
     </div>
   </div>
-
-  <p><strong>Poste um comentário:</strong></p>
-
-  <div class="row">
-    <div class="col-xs-12 col-md-6">
-      <div id="reviews">
-        <% if @job.reviews.blank? %>
-          <!--Seja o primeiro a postar um comentário a <%= @job.title %>-->
-        <% else %>
-          <% @job.reviews.each do |review| %>
-            <%= render 'reviews/show', review: review %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
- <%= render 'reviews/form', job: @job, review: @review %>
-
 </div>
