@@ -6,7 +6,7 @@ class JobsController < ApplicationController
   end
 
   def search
-    @jobs = Job.all
+    @jobs = Job.where(finish: false)
     if params[:address].present?
       @jobs = @jobs.near(params[:address], 20)
     end
