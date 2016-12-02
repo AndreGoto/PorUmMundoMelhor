@@ -30,13 +30,14 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-9">
-      <h2> <%= @job.title %> </h2>
+    <div class="col-sm-7">
+      <h2> <%= @job.title %> </h2><br>
+      <h4>Sobre a vaga</h4>
+      <p><%= @job.description %></p>
       <p><small>Postado por: <%= @job.user.first_name %> <%= @job.user.last_name %></small></p>
       <p><small>Categoria: <%= @job.category %></small></p>
-      <p><%= @job.description %></p>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 col-sm-offset-2">
       <div class="action-group">
         <% if user_signed_in? %>
           <% if @job.user_id == current_user.id %>
@@ -51,10 +52,15 @@
         <% end %>
       </div>
       <div class="action-group">
+        <p><strong>Voluntários nesta causa</strong></p>
         <% @volunteers.each do |volunteer| %>
           <%= generate_profile_image(volunteer) %>
-          <%= volunteer.name %>
+          <%= volunteer.name %><br><br>
         <% end %>
+      </div>
+      <div class='map-static'>
+        <p><strong>Localização</strong></p>
+        <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=270x250&sensor=false&maptype=roadmap&markers=color:red|#{@job.address}" %>
       </div>
     </div>
   </div>
