@@ -58,17 +58,23 @@
       </div>
     </div>
   </div>
+
+  <p><strong>Poste um comentário:</strong></p>
+
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div id="reviews">
+        <% if @job.reviews.blank? %>
+          Be the first to leave a review for <%= @job.title %>
+        <% else %>
+          <% @job.reviews.each do |review| %>
+            <%= render 'reviews/show', review: review %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+ <%= render 'reviews/form', job: @job, review: @review %>
+
 </div>
-
-<div id="reviews">
-  <% if @job.reviews.blank? %>
-    Be the first to leave a review for <%= @job.title %>
-  <% else %>
-    <% @job.reviews.each do |review| %>
-      <%= render 'reviews/show', review: review %>
-    <% end %>
-  <% end %>
-</div>
-
-
-<%= render 'reviews/form', restaurant: @restaurant, review: @review %>

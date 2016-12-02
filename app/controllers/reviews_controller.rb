@@ -3,10 +3,18 @@ class ReviewsController < ApplicationController
     @job = Job.find(params[:job_id])
     @review = Review.new(review_params)
     @review.job = @job
-    if @job.save
-      redirect_to job_path(@job)
+    @review.user_id = current_user.id
+
+    if @review.save
+      respond_to do |format|
+        format.html { redirect_to job_path(@job) }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
     else
-      render 'jobs/show'
+      respond_to do |format|
+        format.html { render 'jobs/show' }
+        format.js  # <-- idem
+      end
     end
   end
 
