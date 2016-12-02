@@ -69,10 +69,10 @@
   <p><strong>Poste um comentário:</strong></p>
 
   <div class="row">
-    <div class="col-xs-6 col-md-4">
+    <div class="col-xs-12 col-md-6">
       <div id="reviews">
         <% if @job.reviews.blank? %>
-          Be the first to leave a review for <%= @job.title %>
+          <!--Seja o primeiro a postar um comentário a <%= @job.title %>-->
         <% else %>
           <% @job.reviews.each do |review| %>
             <%= render 'reviews/show', review: review %>
